@@ -869,6 +869,7 @@ ALTER TABLE ONLY public.directus_webhooks ALTER COLUMN id SET DEFAULT nextval('p
 COPY public.directus_access (id, role, "user", policy, sort) FROM stdin;
 6406a072-d86a-4d2d-bc00-04c2eb4f6c30	\N	\N	abf8a154-5b1c-4a46-ac9c-7300570f4f17	1
 eeccfadf-8bd5-46f7-a1a2-fdc1babeaeff	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	05356158-032f-4864-bf26-0041eea9b895	\N
+19c8702c-f9f1-417a-a858-043db1a99556	\N	2d1c7579-a552-40c3-8951-5457699ce81a	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	1
 \.
 
 
@@ -878,6 +879,17 @@ eeccfadf-8bd5-46f7-a1a2-fdc1babeaeff	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	053
 
 COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, collection, item, origin) FROM stdin;
 1	login	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 10:29:26.749+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	88d552a3-0515-443b-9e23-109ddacd9d0a	http://localhost:8055
+2	login	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 11:22:34.461+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	88d552a3-0515-443b-9e23-109ddacd9d0a	http://localhost:8055
+3	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 13:59:20.752+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_policies	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	http://localhost:8055
+4	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 13:59:20.76+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_access	19c8702c-f9f1-417a-a858-043db1a99556	http://localhost:8055
+5	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 13:59:20.768+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:8055
+6	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 13:59:52.611+00	127.0.0.1	curl/8.7.1	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	\N
+7	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:48:24.259+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+8	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:49:54.152+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+9	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:50:31.096+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+10	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:50:45.572+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+11	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:54:43.33+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+12	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:54:45.497+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
 \.
 
 
@@ -1078,6 +1090,7 @@ COPY public.directus_permissions (id, collection, action, permissions, validatio
 COPY public.directus_policies (id, name, icon, description, ip_access, enforce_tfa, admin_access, app_access) FROM stdin;
 abf8a154-5b1c-4a46-ac9c-7300570f4f17	$t:public_label	public	$t:public_description	\N	f	f	f
 05356158-032f-4864-bf26-0041eea9b895	Administrator	verified	$t:admin_description	\N	f	t	t
+9ce012a6-6ddd-411f-9cbc-42877fbc51f7	App User	badge	Users of the app	\N	f	f	t
 \.
 
 
@@ -1102,6 +1115,9 @@ COPY public.directus_relations (id, many_collection, many_field, one_collection,
 --
 
 COPY public.directus_revisions (id, activity, collection, item, data, delta, parent, version) FROM stdin;
+1	3	directus_policies	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	{"name":"App User","description":"Users of the app","app_access":true}	{"name":"App User","description":"Users of the app","app_access":true}	2	\N
+3	5	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	{"first_name":"Charlie","last_name":"Jacques","email":"charlie@test.com","password":"**********","policies":{"create":[{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1}],"update":[],"delete":[]}}	{"first_name":"Charlie","last_name":"Jacques","email":"charlie@test.com","password":"**********","policies":{"create":[{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1}],"update":[],"delete":[]}}	\N	\N
+2	4	directus_access	19c8702c-f9f1-417a-a858-043db1a99556	{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1,"user":"2d1c7579-a552-40c3-8951-5457699ce81a"}	{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1,"user":"2d1c7579-a552-40c3-8951-5457699ce81a"}	3	\N
 \.
 
 
@@ -1120,6 +1136,15 @@ ea221134-dcd8-4598-9ae2-d84a2a044a03	Administrator	verified	$t:admin_description
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent, share, origin, next_token) FROM stdin;
 D0T-0Ih2L9WDphzabgJwgnaH82Jp7rL3QlUColZu7yv7MbGPvxR6QFHR2E1ui_2A	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-31 10:29:26.733+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
+0sF_JnW010HsEYKjj3LSUAXOrLOclMWzXON3cEa5hVA__OTcVH899P4bHNiwsv-w	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 13:59:52.606+00	127.0.0.1	curl/8.7.1	\N	\N	\N
+gGwRjfLmUTvkNKgyAz0juIuQt1xvNoca4HBCwQlR_hjMsgD2aifgxVrDb8OMc4d5	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:48:24.249+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+MBq17fnop6M5AjECrzQrHU1ldCmfAh8QKsJQvoMwrQ51CPCFqi13STJiL0Ztc1mL	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:49:54.142+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+pIkrzfJBUJL_w6NHrjjzW7-pwpxmUAsGb_4vLI72-s5-BZOvICaqPlmqB5h-g9Fi	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:50:31.081+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+N4rGDSQa491y25mtRrwLTDyWYvBKPmwLnoXElM-TaFehCWZiMByfyMJLh-Oj1WC2	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:50:45.565+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+Lo1_8B9eTcrOoXWUvloowd7yQMIajYDF8xschySO-Fx4tfp2aG-Q5PzmJUG8KJyj	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:54:43.32+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+xNAsfSY8PisYablIJQRfc0gPkgCCbzrOf3-RZ2cwSTdHC0u7iwl1-II2J3qYSFFz	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:54:45.486+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+G0nvuPzHkkql6Ccn3wC2SPKACQKQTmfiibsb7NyD8wdLKUbfO1br7StMh0vbTRCq	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 14:55:01.876+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	J2PBEJUZTNAEAVCWJlrrt9I2JucBzaQYAWGWRDEzsjhxPBSrCXf83MGvKE9flVYb
+J2PBEJUZTNAEAVCWJlrrt9I2JucBzaQYAWGWRDEzsjhxPBSrCXf83MGvKE9flVYb	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-25 14:54:51.876+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
 \.
 
 
@@ -1152,7 +1177,8 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-24 10:29:26.757+00	/content	default	\N	\N	t	\N	\N	\N	\N	\N
+2d1c7579-a552-40c3-8951-5457699ce81a	Charlie	Jacques	charlie@test.com	$argon2id$v=19$m=65536,t=3,p=4$oe8DyNEzkwl4A/s01mgBXw$ALqF8cP6WKdYcIsw+VV9MVh8nqdXokQnIRUIduFWF3s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2025-01-24 14:54:45.501+00	\N	default	\N	\N	t	\N	\N	\N	\N	\N
+88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-24 14:54:51.882+00	/users	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -1176,7 +1202,7 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 1, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 12, true);
 
 
 --
@@ -1218,7 +1244,7 @@ SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, false);
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 3, true);
 
 
 --
