@@ -1,0 +1,1 @@
+docker exec -i directus-pg psql -U pguser -d directus -f - < ./data/directus_dump.sql

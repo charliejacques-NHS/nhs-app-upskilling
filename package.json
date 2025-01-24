@@ -4,6 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create": "sh ./scripts/create_db.sh",
+    "db:restore": "sh ./scripts/restore_db_from_dump.sh",
+    "db:dump": "sh ./scripts/create_db_dump.sh",
     "start": "directus start"
   },
   "keywords": [],
