@@ -1171,6 +1171,7 @@ abf8a154-5b1c-4a46-ac9c-7300570f4f17	$t:public_label	public	$t:public_descriptio
 --
 
 COPY public.directus_presets (id, bookmark, "user", role, collection, search, layout, layout_query, layout_options, refresh_interval, filter, icon, color) FROM stdin;
+1	\N	88d552a3-0515-443b-9e23-109ddacd9d0a	\N	messages	\N	\N	{"tabular":{"fields":["subject","content","date_created","status","to"]}}	{"tabular":{"widths":{}}}	\N	\N	bookmark	\N
 \.
 
 
@@ -1253,9 +1254,10 @@ eFfYfHgLr5_EBMubzknxOCY32yEWw6jqeQulivgQarty8K5yYwDT5y7YfY4pCXXU	2d1c7579-a552-4
 hfwDqBhlbYNOUArgdYhqwuE98p5sZJI7ycuoe0z5eqQfCMjoteM8_YF9CIUXpKM9	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:47:35.165+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 G1MGgalaZvlcjbbRCaqASG6YjDWRkCrJl7FP71MlOMMl-qS89hmcXb15D4y81xKq	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:53:51.121+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 Cau2mtNS4wb_Y_m8zfoLyc4cBjghJXWuPJplwtJIPcoe0wY4FbmL2cBSCaTdQtKj	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:55:11.866+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
-2T7l2agaPZydd1gFb3NqGfhtC-NrasiPe2wX06a4gY6PwhDTgyLqObo1hnBYcWaH	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-28 16:14:40.032+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
 1Y49-203S9JwP5kCrAgEN_lFvc1adMDkRNGF0wycy_gkuCM0qcsUN5V_RKRCN_PF	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 16:26:36.183+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 CMDG1QSPa2_ItnUwl33JxFzv51zzd0T3qx_l15SVSFMOe232dsPkysE-M4PjUQuo	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 16:50:19.441+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+2T7l2agaPZydd1gFb3NqGfhtC-NrasiPe2wX06a4gY6PwhDTgyLqObo1hnBYcWaH	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:57:38.798+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	t0C9HKMHkf_D-zVqCr-V7TIsnxz02PNxSN_QVePwMtFtPwe-nyzkapRUw6lypuuv
+t0C9HKMHkf_D-zVqCr-V7TIsnxz02PNxSN_QVePwMtFtPwe-nyzkapRUw6lypuuv	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-28 16:57:28.798+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
 \.
 
 
@@ -1288,9 +1290,9 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-27 16:14:40.038+00	/content/messages	default	\N	\N	t	\N	\N	\N	\N	\N
 2d1c7579-a552-40c3-8951-5457699ce81a	Charlie	Jacques	charlie@test.com	$argon2id$v=19$m=65536,t=3,p=4$oe8DyNEzkwl4A/s01mgBXw$ALqF8cP6WKdYcIsw+VV9MVh8nqdXokQnIRUIduFWF3s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2025-01-27 16:50:19.448+00	\N	default	\N	\N	t	\N	\N	\N	\N	\N
 313c5ea6-f636-46c6-932d-426e72f7c23f	Testing	Full-Permissions	full-permissions@test.com	$argon2id$v=19$m=65536,t=3,p=4$53Nf5mUiOKBQuvncVNZVEA$3jVvYTviHWELzovguJhg/3CoL6L62PLg53FtlLBD7Fk	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	\N	\N	default	\N	\N	t	\N	\N	\N	\N	\N
+88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-27 16:57:28.801+00	/content/messages	default	\N	\N	t	\N	\N	\N	\N	\N
 fc595e66-7a89-4db0-a272-77c75646d18e	Testing	Limited-Permissions	limited-permissions@test.com	$argon2id$v=19$m=65536,t=3,p=4$GEj3GLrtCaayH0i0Okz5Xw$LCbBqJjKFXp0KdqyirKxEIFmgr/4lRnvkUO2246TT2g	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	\N	\N	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
@@ -1353,7 +1355,7 @@ SELECT pg_catalog.setval('public.directus_permissions_id_seq', 1, true);
 -- Name: directus_presets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, true);
 
 
 --
