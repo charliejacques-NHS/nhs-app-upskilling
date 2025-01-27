@@ -1,4 +1,5 @@
 import { decode, JwtPayload } from 'jsonwebtoken';
+import { Message } from '../types';
 
 class API {
   private token: string | null = null;
@@ -176,6 +177,36 @@ class API {
       // Consider logging out the user here as the refresh might have failed.
       return null;
     }
+  }
+
+  async request<T>(url: string, options: RequestInit): Promise<T> {
+    return fetch(url, { 
+      ...options, 
+      headers: { 
+        ...options.headers, 
+        Authorization: `Bearer ${this.token}`, 
+        'Content-Type': 'application/json' 
+      } 
+    }).then(async (res) => {
+        if (res.ok) {
+        const { data } = await res.json();
+        return data;
+      } else {
+        throw new Error(res.statusText);
+      }
+    });
+  }
+
+  public async getAllMessages(): Promise<Message[]> {
+    return this.request<Message[]>(`/api/items/messages`, {
+      method: 'GET',
+    });
+  }
+
+  public async getMessage(id: string): Promise<Message> {
+    return this.request<Message>(`/api/items/messages/${id}`, {
+      method: 'GET',
+    });
   }
 }
 

@@ -1,9 +1,10 @@
 import { lazy, Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router";
+import { Navigate, Outlet, Route, Routes } from "react-router";
 import { ROUTES } from "../types";
 import api from "../lib/api";
 
 const Login = lazy(() => import("./Login/Login"));
+const Messages = lazy(() => import("./Messages/Messages"));
 const Home = lazy(() => import("./Home/Home"));
 
 const Pages = () => {
@@ -15,8 +16,12 @@ const Pages = () => {
         <Route path={ROUTES.LOGIN} element={!auth() ? <Login /> : <Navigate to={ROUTES.HOME} />} />
         <Route
           path={ROUTES.HOME}
-          element={auth() ? <Home /> : <Navigate to={ROUTES.LOGIN} />}
-        />
+          element={auth() ? <Outlet /> : <Navigate to={ROUTES.LOGIN} />}
+        >
+          <Route index element={<Home />} />
+          <Route path={ROUTES.MESSAGES} element={<Messages />} />
+        </Route>
+
 
         {/* Redirect to Home if authenticated */}
         <Route

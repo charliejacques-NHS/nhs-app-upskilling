@@ -800,6 +800,23 @@ ALTER SEQUENCE public.directus_webhooks_id_seq OWNED BY public.directus_webhooks
 
 
 --
+-- Name: messages; Type: TABLE; Schema: public; Owner: pguser
+--
+
+CREATE TABLE public.messages (
+    id uuid NOT NULL,
+    status character varying(255) DEFAULT 'draft'::character varying NOT NULL,
+    date_created timestamp with time zone,
+    date_updated timestamp with time zone,
+    content character varying(255),
+    "to" uuid,
+    subject character varying(255)
+);
+
+
+ALTER TABLE public.messages OWNER TO pguser;
+
+--
 -- Name: directus_activity id; Type: DEFAULT; Schema: public; Owner: pguser
 --
 
@@ -870,6 +887,8 @@ COPY public.directus_access (id, role, "user", policy, sort) FROM stdin;
 6406a072-d86a-4d2d-bc00-04c2eb4f6c30	\N	\N	abf8a154-5b1c-4a46-ac9c-7300570f4f17	1
 eeccfadf-8bd5-46f7-a1a2-fdc1babeaeff	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	05356158-032f-4864-bf26-0041eea9b895	\N
 19c8702c-f9f1-417a-a858-043db1a99556	\N	2d1c7579-a552-40c3-8951-5457699ce81a	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	1
+b796c415-047e-46d1-a7fc-63bcef5d0562	\N	313c5ea6-f636-46c6-932d-426e72f7c23f	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	1
+6fde25df-ff9c-45a5-b026-6db2b6db4953	\N	fc595e66-7a89-4db0-a272-77c75646d18e	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	1
 \.
 
 
@@ -890,6 +909,50 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 10	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:50:45.572+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
 11	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:54:43.33+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
 12	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 14:54:45.497+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+13	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 15:19:22.954+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+14	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 15:19:27.732+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+15	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-24 15:20:59.853+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+16	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:39:18.44+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+17	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:41:25.95+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+18	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:42:11.936+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+19	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:47:35.171+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+20	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:53:51.132+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+21	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 15:55:11.875+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+22	login	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 15:56:15.522+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	88d552a3-0515-443b-9e23-109ddacd9d0a	http://localhost:8055
+23	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 15:57:49.236+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_access	b796c415-047e-46d1-a7fc-63bcef5d0562	http://localhost:8055
+24	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 15:57:49.246+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	313c5ea6-f636-46c6-932d-426e72f7c23f	http://localhost:8055
+25	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:02:11.334+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_access	6fde25df-ff9c-45a5-b026-6db2b6db4953	http://localhost:8055
+26	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:02:11.344+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	fc595e66-7a89-4db0-a272-77c75646d18e	http://localhost:8055
+27	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:04:51.006+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	1	http://localhost:8055
+28	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:04:51.015+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	2	http://localhost:8055
+29	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:04:51.024+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	3	http://localhost:8055
+30	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:04:51.033+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	4	http://localhost:8055
+31	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:04:51.041+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_collections	messages	http://localhost:8055
+32	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:05:34.992+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	5	http://localhost:8055
+33	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:11:03.438+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	6	http://localhost:8055
+34	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:12:09.265+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	6	http://localhost:8055
+35	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:12:52.106+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	3	http://localhost:8055
+36	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:13:47.698+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_collections	messages	http://localhost:8055
+37	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:16:29.88+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	7	http://localhost:8055
+38	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:16:51.648+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	7	http://localhost:8055
+39	delete	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:17:06.85+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	6	http://localhost:8055
+40	delete	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:17:24.242+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	7	http://localhost:8055
+41	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:17:53.491+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	8	http://localhost:8055
+42	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:18:14.293+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	8	http://localhost:8055
+43	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:19:43.516+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	8	http://localhost:8055
+44	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:19:59.223+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	http://localhost:8055
+45	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:20:20.572+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	messages	9f31fcb9-161b-46bf-b47e-5214d0b8bba3	http://localhost:8055
+46	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:20:26.721+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	http://localhost:8055
+47	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 16:26:36.19+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
+48	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:28:04.081+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_permissions	1	http://localhost:8055
+49	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:28:04.092+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_policies	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	http://localhost:8055
+50	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:34:26.515+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_permissions	1	http://localhost:8055
+51	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:34:26.527+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_policies	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	http://localhost:8055
+52	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:34:42.596+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	8	http://localhost:8055
+53	create	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:36:47.685+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_fields	9	http://localhost:8055
+54	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:37:06.323+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	http://localhost:8055
+55	update	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-27 16:37:15.597+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	messages	9f31fcb9-161b-46bf-b47e-5214d0b8bba3	http://localhost:8055
+56	login	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-27 16:50:19.446+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	http://localhost:5173
 \.
 
 
@@ -898,6 +961,7 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 --
 
 COPY public.directus_collections (collection, icon, note, display_template, hidden, singleton, translations, archive_field, archive_app_filter, archive_value, unarchive_value, sort_field, accountability, color, item_duplication_fields, sort, "group", collapse, preview_url, versioning) FROM stdin;
+messages	\N	\N	\N	f	f	\N	status	t	archived	draft	\N	all	#2FBAB6	\N	\N	\N	open	\N	f
 \.
 
 
@@ -930,6 +994,13 @@ COPY public.directus_extensions (enabled, id, folder, source, bundle) FROM stdin
 --
 
 COPY public.directus_fields (id, collection, field, special, interface, options, display, display_options, readonly, hidden, sort, width, translations, note, conditions, required, "group", validation, validation_message) FROM stdin;
+1	messages	id	uuid	input	\N	\N	\N	t	t	1	full	\N	\N	\N	f	\N	\N	\N
+2	messages	status	\N	select-dropdown	{"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)"}]}	labels	{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)","foreground":"var(--theme--primary)","background":"var(--theme--primary-background)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)","foreground":"var(--theme--foreground)","background":"var(--theme--background-normal)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)","foreground":"var(--theme--warning)","background":"var(--theme--warning-background)"}]}	f	f	2	full	\N	\N	\N	f	\N	\N	\N
+4	messages	date_updated	date-updated	datetime	\N	datetime	{"relative":true}	t	t	4	half	\N	\N	\N	f	\N	\N	\N
+5	messages	content	\N	input	{"placeholder":"This is a test message"}	\N	\N	f	f	5	full	\N	\N	\N	t	\N	\N	\N
+3	messages	date_created	date-created	datetime	\N	datetime	{"relative":true}	t	f	3	half	\N	\N	\N	f	\N	\N	\N
+8	messages	to	m2o	select-dropdown-m2o	{"enableCreate":false}	\N	\N	f	f	6	full	\N	\N	\N	t	\N	\N	\N
+9	messages	subject	\N	input	{"placeholder":"The subject of the message"}	\N	\N	f	f	7	full	\N	\N	\N	t	\N	\N	\N
 \.
 
 
@@ -1080,6 +1151,7 @@ COPY public.directus_panels (id, dashboard, name, icon, color, show_header, note
 --
 
 COPY public.directus_permissions (id, collection, action, permissions, validation, presets, fields, policy) FROM stdin;
+1	messages	read	{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]}	\N	\N	*	9ce012a6-6ddd-411f-9cbc-42877fbc51f7
 \.
 
 
@@ -1107,6 +1179,7 @@ COPY public.directus_presets (id, bookmark, "user", role, collection, search, la
 --
 
 COPY public.directus_relations (id, many_collection, many_field, one_collection, one_field, one_collection_field, one_allowed_collections, junction_field, sort_field, one_deselect_action) FROM stdin;
+2	messages	to	directus_users	\N	\N	\N	\N	\N	nullify
 \.
 
 
@@ -1118,6 +1191,34 @@ COPY public.directus_revisions (id, activity, collection, item, data, delta, par
 1	3	directus_policies	9ce012a6-6ddd-411f-9cbc-42877fbc51f7	{"name":"App User","description":"Users of the app","app_access":true}	{"name":"App User","description":"Users of the app","app_access":true}	2	\N
 3	5	directus_users	2d1c7579-a552-40c3-8951-5457699ce81a	{"first_name":"Charlie","last_name":"Jacques","email":"charlie@test.com","password":"**********","policies":{"create":[{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1}],"update":[],"delete":[]}}	{"first_name":"Charlie","last_name":"Jacques","email":"charlie@test.com","password":"**********","policies":{"create":[{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1}],"update":[],"delete":[]}}	\N	\N
 2	4	directus_access	19c8702c-f9f1-417a-a858-043db1a99556	{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1,"user":"2d1c7579-a552-40c3-8951-5457699ce81a"}	{"policy":{"name":"App User","description":"Users of the app","app_access":true},"sort":1,"user":"2d1c7579-a552-40c3-8951-5457699ce81a"}	3	\N
+5	24	directus_users	313c5ea6-f636-46c6-932d-426e72f7c23f	{"first_name":"Testing","last_name":"Full-Permissions","email":"full-permissions@test.com","password":"**********","policies":{"create":[{"user":"+","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}],"update":[],"delete":[]}}	{"first_name":"Testing","last_name":"Full-Permissions","email":"full-permissions@test.com","password":"**********","policies":{"create":[{"user":"+","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}],"update":[],"delete":[]}}	\N	\N
+4	23	directus_access	b796c415-047e-46d1-a7fc-63bcef5d0562	{"user":"313c5ea6-f636-46c6-932d-426e72f7c23f","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}	{"user":"313c5ea6-f636-46c6-932d-426e72f7c23f","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}	5	\N
+7	26	directus_users	fc595e66-7a89-4db0-a272-77c75646d18e	{"first_name":"Testing","last_name":"Limited-Permissions","email":"limited-permissions@test.com","password":"**********","policies":{"create":[{"user":"+","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}],"update":[],"delete":[]}}	{"first_name":"Testing","last_name":"Limited-Permissions","email":"limited-permissions@test.com","password":"**********","policies":{"create":[{"user":"+","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}],"update":[],"delete":[]}}	\N	\N
+6	25	directus_access	6fde25df-ff9c-45a5-b026-6db2b6db4953	{"user":"fc595e66-7a89-4db0-a272-77c75646d18e","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}	{"user":"fc595e66-7a89-4db0-a272-77c75646d18e","policy":{"id":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"},"sort":1}	7	\N
+8	27	directus_fields	1	{"sort":1,"hidden":true,"readonly":true,"interface":"input","special":["uuid"],"field":"id","collection":"messages"}	{"sort":1,"hidden":true,"readonly":true,"interface":"input","special":["uuid"],"field":"id","collection":"messages"}	\N	\N
+9	28	directus_fields	2	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)","foreground":"var(--theme--primary)","background":"var(--theme--primary-background)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)","foreground":"var(--theme--foreground)","background":"var(--theme--background-normal)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)","foreground":"var(--theme--warning)","background":"var(--theme--warning-background)"}]},"field":"status","collection":"messages"}	{"sort":2,"width":"full","options":{"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)"}]},"interface":"select-dropdown","display":"labels","display_options":{"showAsDot":true,"choices":[{"text":"$t:published","value":"published","color":"var(--theme--primary)","foreground":"var(--theme--primary)","background":"var(--theme--primary-background)"},{"text":"$t:draft","value":"draft","color":"var(--theme--foreground)","foreground":"var(--theme--foreground)","background":"var(--theme--background-normal)"},{"text":"$t:archived","value":"archived","color":"var(--theme--warning)","foreground":"var(--theme--warning)","background":"var(--theme--warning-background)"}]},"field":"status","collection":"messages"}	\N	\N
+10	29	directus_fields	3	{"sort":3,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"messages"}	{"sort":3,"special":["date-created"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_created","collection":"messages"}	\N	\N
+11	30	directus_fields	4	{"sort":4,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"messages"}	{"sort":4,"special":["date-updated"],"interface":"datetime","readonly":true,"hidden":true,"width":"half","display":"datetime","display_options":{"relative":true},"field":"date_updated","collection":"messages"}	\N	\N
+12	31	directus_collections	messages	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"messages"}	{"archive_field":"status","archive_value":"archived","unarchive_value":"draft","singleton":false,"collection":"messages"}	\N	\N
+13	32	directus_fields	5	{"sort":5,"interface":"input","special":null,"required":true,"options":{"placeholder":"This is a test message"},"collection":"messages","field":"content"}	{"sort":5,"interface":"input","special":null,"required":true,"options":{"placeholder":"This is a test message"},"collection":"messages","field":"content"}	\N	\N
+14	33	directus_fields	6	{"sort":6,"interface":"input","special":["user-created","user-updated"],"required":true,"hidden":false,"display":null,"validation":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"conditions":null,"collection":"messages","field":"to"}	{"sort":6,"interface":"input","special":["user-created","user-updated"],"required":true,"hidden":false,"display":null,"validation":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"conditions":null,"collection":"messages","field":"to"}	\N	\N
+15	34	directus_fields	6	{"id":6,"collection":"messages","field":"to","special":["user-created","user-updated"],"interface":"input","options":null,"display":"raw","display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"validation_message":null}	{"collection":"messages","field":"to","interface":"input","display":"raw"}	\N	\N
+16	35	directus_fields	3	{"id":3,"collection":"messages","field":"date_created","special":["date-created"],"interface":"datetime","options":null,"display":"datetime","display_options":{"relative":true},"readonly":true,"hidden":false,"sort":3,"width":"half","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"messages","field":"date_created","hidden":false}	\N	\N
+17	36	directus_collections	messages	{"collection":"messages","icon":null,"note":null,"display_template":null,"hidden":false,"singleton":false,"translations":null,"archive_field":"status","archive_app_filter":true,"archive_value":"archived","unarchive_value":"draft","sort_field":null,"accountability":"all","color":"#2FBAB6","item_duplication_fields":null,"sort":null,"group":null,"collapse":"open","preview_url":null,"versioning":false}	{"color":"#2FBAB6"}	\N	\N
+18	37	directus_fields	7	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"enableCreate":false,"filter":{"_and":[{"role":{"_eq":null}}]}},"collection":"messages","field":"user_to"}	{"sort":7,"interface":"select-dropdown-m2o","special":["m2o"],"options":{"enableCreate":false,"filter":{"_and":[{"role":{"_eq":null}}]}},"collection":"messages","field":"user_to"}	\N	\N
+19	38	directus_fields	7	{"id":7,"collection":"messages","field":"user_to","special":["m2o"],"interface":"select-dropdown-m2o","options":{"enableCreate":false,"filter":null},"display":"user","display_options":null,"readonly":false,"hidden":false,"sort":7,"width":"full","translations":null,"note":null,"conditions":null,"required":false,"group":null,"validation":null,"validation_message":null}	{"collection":"messages","field":"user_to","options":{"enableCreate":false,"filter":null},"display":"user"}	\N	\N
+20	41	directus_fields	8	{"sort":6,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"enableCreate":false},"collection":"messages","field":"to"}	{"sort":6,"interface":"select-dropdown-m2o","special":["m2o"],"required":true,"options":{"enableCreate":false},"collection":"messages","field":"to"}	\N	\N
+21	42	directus_fields	8	{"id":8,"collection":"messages","field":"to","special":["m2o"],"interface":"select-dropdown-m2o","options":{"enableCreate":false},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"validation_message":null}	{"collection":"messages","field":"to","validation":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]}}	\N	\N
+22	43	directus_fields	8	{"id":8,"collection":"messages","field":"to","special":["m2o"],"interface":"select-dropdown-m2o","options":{"enableCreate":false},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":[{"name":"Users Can Only See Their Own Message","rule":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"options":{"enableCreate":true,"enableSelect":true,"enableLink":false}}],"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"messages","field":"to","conditions":[{"name":"Users Can Only See Their Own Message","rule":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"options":{"enableCreate":true,"enableSelect":true,"enableLink":false}}],"validation":null}	\N	\N
+23	44	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	{"content":"test messsage","to":"2d1c7579-a552-40c3-8951-5457699ce81a"}	{"content":"test messsage","to":"2d1c7579-a552-40c3-8951-5457699ce81a"}	\N	\N
+24	45	messages	9f31fcb9-161b-46bf-b47e-5214d0b8bba3	{"content":"test message to full permissions user","status":"published","to":"313c5ea6-f636-46c6-932d-426e72f7c23f"}	{"content":"test message to full permissions user","status":"published","to":"313c5ea6-f636-46c6-932d-426e72f7c23f"}	\N	\N
+25	46	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	{"id":"7ff1570b-0f6c-4d6e-9504-d4ec9d322744","status":"published","date_created":"2025-01-27T16:19:59.218Z","date_updated":"2025-01-27T16:20:26.717Z","content":"test messsage","to":"2d1c7579-a552-40c3-8951-5457699ce81a"}	{"status":"published","date_updated":"2025-01-27T16:20:26.717Z"}	\N	\N
+26	48	directus_permissions	1	{"policy":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7","permissions":null,"validation":null,"fields":["*"],"presets":null,"collection":"messages","action":"read"}	{"policy":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7","permissions":null,"validation":null,"fields":["*"],"presets":null,"collection":"messages","action":"read"}	\N	\N
+27	50	directus_permissions	1	{"id":1,"collection":"messages","action":"read","permissions":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"validation":null,"presets":null,"fields":["*"],"policy":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"}	{"collection":"messages","action":"read","permissions":{"_and":[{"to":{"_eq":"$CURRENT_USER"}}]},"validation":null,"presets":null,"fields":["*"],"policy":"9ce012a6-6ddd-411f-9cbc-42877fbc51f7"}	\N	\N
+28	52	directus_fields	8	{"id":8,"collection":"messages","field":"to","special":["m2o"],"interface":"select-dropdown-m2o","options":{"enableCreate":false},"display":null,"display_options":null,"readonly":false,"hidden":false,"sort":6,"width":"full","translations":null,"note":null,"conditions":null,"required":true,"group":null,"validation":null,"validation_message":null}	{"collection":"messages","field":"to","conditions":null}	\N	\N
+29	53	directus_fields	9	{"sort":7,"interface":"input","special":null,"required":true,"options":{"placeholder":"The subject of the message"},"collection":"messages","field":"subject"}	{"sort":7,"interface":"input","special":null,"required":true,"options":{"placeholder":"The subject of the message"},"collection":"messages","field":"subject"}	\N	\N
+30	54	messages	7ff1570b-0f6c-4d6e-9504-d4ec9d322744	{"id":"7ff1570b-0f6c-4d6e-9504-d4ec9d322744","status":"published","date_created":"2025-01-27T16:19:59.218Z","date_updated":"2025-01-27T16:37:06.321Z","content":"test messsage content","to":"2d1c7579-a552-40c3-8951-5457699ce81a","subject":"Test message"}	{"content":"test messsage content","subject":"Test message","date_updated":"2025-01-27T16:37:06.321Z"}	\N	\N
+31	55	messages	9f31fcb9-161b-46bf-b47e-5214d0b8bba3	{"id":"9f31fcb9-161b-46bf-b47e-5214d0b8bba3","status":"published","date_created":"2025-01-27T16:20:20.571Z","date_updated":"2025-01-27T16:37:15.595Z","content":"test message content to full permissions user","to":"313c5ea6-f636-46c6-932d-426e72f7c23f","subject":"Test message"}	{"content":"test message content to full permissions user","subject":"Test message","date_updated":"2025-01-27T16:37:15.595Z"}	\N	\N
 \.
 
 
@@ -1143,8 +1244,18 @@ pIkrzfJBUJL_w6NHrjjzW7-pwpxmUAsGb_4vLI72-s5-BZOvICaqPlmqB5h-g9Fi	2d1c7579-a552-4
 N4rGDSQa491y25mtRrwLTDyWYvBKPmwLnoXElM-TaFehCWZiMByfyMJLh-Oj1WC2	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:50:45.565+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 Lo1_8B9eTcrOoXWUvloowd7yQMIajYDF8xschySO-Fx4tfp2aG-Q5PzmJUG8KJyj	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:54:43.32+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 xNAsfSY8PisYablIJQRfc0gPkgCCbzrOf3-RZ2cwSTdHC0u7iwl1-II2J3qYSFFz	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 14:54:45.486+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
-G0nvuPzHkkql6Ccn3wC2SPKACQKQTmfiibsb7NyD8wdLKUbfO1br7StMh0vbTRCq	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-24 14:55:01.876+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	J2PBEJUZTNAEAVCWJlrrt9I2JucBzaQYAWGWRDEzsjhxPBSrCXf83MGvKE9flVYb
-J2PBEJUZTNAEAVCWJlrrt9I2JucBzaQYAWGWRDEzsjhxPBSrCXf83MGvKE9flVYb	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-25 14:54:51.876+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
+p95mnF8WDAqXFA31559c7fd1TlqxdPPRB_buSdobK6kWG3u4anGJwDgQ8rL90mmC	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 15:19:22.94+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+uZIVSeV3AZ05XkJnwFPO3IBUIqoRsQcg4Efwsl6MxaQ_btY2RAmF80TKTTsg1A7s	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 15:19:27.727+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+XaZOeyYXDjQYu8Km1W67Ps7KUs_pX9i-rb8sQbHUkixx1X0oxyIQaAn4sV-HT67Q	2d1c7579-a552-40c3-8951-5457699ce81a	2025-01-31 15:20:59.843+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+uKqjIYteov3FoWtXA9v0UnxPBMsRCvIsAXm_kLFxA8BKwA5_eOFu1MCNYXeCUsgS	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:39:18.427+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+eFfYfHgLr5_EBMubzknxOCY32yEWw6jqeQulivgQarty8K5yYwDT5y7YfY4pCXXU	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:41:25.941+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+1ZcR1RBBamCDHGKwVECjqnLMlMiE6gBbSrDam5lTBFfYf-V_Yww3DBs4uxf2n1bN	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:42:11.926+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+hfwDqBhlbYNOUArgdYhqwuE98p5sZJI7ycuoe0z5eqQfCMjoteM8_YF9CIUXpKM9	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:47:35.165+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+G1MGgalaZvlcjbbRCaqASG6YjDWRkCrJl7FP71MlOMMl-qS89hmcXb15D4y81xKq	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:53:51.121+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+Cau2mtNS4wb_Y_m8zfoLyc4cBjghJXWuPJplwtJIPcoe0wY4FbmL2cBSCaTdQtKj	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 15:55:11.866+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+2T7l2agaPZydd1gFb3NqGfhtC-NrasiPe2wX06a4gY6PwhDTgyLqObo1hnBYcWaH	88d552a3-0515-443b-9e23-109ddacd9d0a	2025-01-28 16:14:40.032+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:8055	\N
+1Y49-203S9JwP5kCrAgEN_lFvc1adMDkRNGF0wycy_gkuCM0qcsUN5V_RKRCN_PF	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 16:26:36.183+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
+CMDG1QSPa2_ItnUwl33JxFzv51zzd0T3qx_l15SVSFMOe232dsPkysE-M4PjUQuo	2d1c7579-a552-40c3-8951-5457699ce81a	2025-02-03 16:50:19.441+00	127.0.0.1	Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0	\N	http://localhost:5173	\N
 \.
 
 
@@ -1177,8 +1288,10 @@ COPY public.directus_translations (id, language, key, value) FROM stdin;
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, tfa_secret, status, role, token, last_access, last_page, provider, external_identifier, auth_data, email_notifications, appearance, theme_dark, theme_light, theme_light_overrides, theme_dark_overrides) FROM stdin;
-2d1c7579-a552-40c3-8951-5457699ce81a	Charlie	Jacques	charlie@test.com	$argon2id$v=19$m=65536,t=3,p=4$oe8DyNEzkwl4A/s01mgBXw$ALqF8cP6WKdYcIsw+VV9MVh8nqdXokQnIRUIduFWF3s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2025-01-24 14:54:45.501+00	\N	default	\N	\N	t	\N	\N	\N	\N	\N
-88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-24 14:54:51.882+00	/users	default	\N	\N	t	\N	\N	\N	\N	\N
+88d552a3-0515-443b-9e23-109ddacd9d0a	Admin	User	admin@example.com	$argon2id$v=19$m=65536,t=3,p=4$FzfBAIo9QUhuziBMLqpdEg$hKFJ8fOZMa5Me0y0aGDmE+vcSHG2wmCG4YWhUT3Siys	\N	\N	\N	\N	\N	\N	\N	active	ea221134-dcd8-4598-9ae2-d84a2a044a03	\N	2025-01-27 16:14:40.038+00	/content/messages	default	\N	\N	t	\N	\N	\N	\N	\N
+2d1c7579-a552-40c3-8951-5457699ce81a	Charlie	Jacques	charlie@test.com	$argon2id$v=19$m=65536,t=3,p=4$oe8DyNEzkwl4A/s01mgBXw$ALqF8cP6WKdYcIsw+VV9MVh8nqdXokQnIRUIduFWF3s	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	2025-01-27 16:50:19.448+00	\N	default	\N	\N	t	\N	\N	\N	\N	\N
+313c5ea6-f636-46c6-932d-426e72f7c23f	Testing	Full-Permissions	full-permissions@test.com	$argon2id$v=19$m=65536,t=3,p=4$53Nf5mUiOKBQuvncVNZVEA$3jVvYTviHWELzovguJhg/3CoL6L62PLg53FtlLBD7Fk	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	\N	\N	default	\N	\N	t	\N	\N	\N	\N	\N
+fc595e66-7a89-4db0-a272-77c75646d18e	Testing	Limited-Permissions	limited-permissions@test.com	$argon2id$v=19$m=65536,t=3,p=4$GEj3GLrtCaayH0i0Okz5Xw$LCbBqJjKFXp0KdqyirKxEIFmgr/4lRnvkUO2246TT2g	\N	\N	\N	\N	\N	\N	\N	active	\N	\N	\N	\N	default	\N	\N	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -1199,17 +1312,27 @@ COPY public.directus_webhooks (id, name, method, url, status, data, actions, col
 
 
 --
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: pguser
+--
+
+COPY public.messages (id, status, date_created, date_updated, content, "to", subject) FROM stdin;
+7ff1570b-0f6c-4d6e-9504-d4ec9d322744	published	2025-01-27 16:19:59.218+00	2025-01-27 16:37:06.321+00	test messsage content	2d1c7579-a552-40c3-8951-5457699ce81a	Test message
+9f31fcb9-161b-46bf-b47e-5214d0b8bba3	published	2025-01-27 16:20:20.571+00	2025-01-27 16:37:15.595+00	test message content to full permissions user	313c5ea6-f636-46c6-932d-426e72f7c23f	Test message
+\.
+
+
+--
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 12, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 56, true);
 
 
 --
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 9, true);
 
 
 --
@@ -1223,7 +1346,7 @@ SELECT pg_catalog.setval('public.directus_notifications_id_seq', 1, false);
 -- Name: directus_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_permissions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_permissions_id_seq', 1, true);
 
 
 --
@@ -1237,14 +1360,14 @@ SELECT pg_catalog.setval('public.directus_presets_id_seq', 1, false);
 -- Name: directus_relations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_relations_id_seq', 1, false);
+SELECT pg_catalog.setval('public.directus_relations_id_seq', 2, true);
 
 
 --
 -- Name: directus_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pguser
 --
 
-SELECT pg_catalog.setval('public.directus_revisions_id_seq', 3, true);
+SELECT pg_catalog.setval('public.directus_revisions_id_seq', 31, true);
 
 
 --
@@ -1523,6 +1646,14 @@ ALTER TABLE ONLY public.directus_versions
 
 ALTER TABLE ONLY public.directus_webhooks
     ADD CONSTRAINT directus_webhooks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: pguser
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
 
 
 --
@@ -1867,6 +1998,14 @@ ALTER TABLE ONLY public.directus_versions
 
 ALTER TABLE ONLY public.directus_webhooks
     ADD CONSTRAINT directus_webhooks_migrated_flow_foreign FOREIGN KEY (migrated_flow) REFERENCES public.directus_flows(id) ON DELETE SET NULL;
+
+
+--
+-- Name: messages messages_to_foreign; Type: FK CONSTRAINT; Schema: public; Owner: pguser
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT messages_to_foreign FOREIGN KEY ("to") REFERENCES public.directus_users(id) ON DELETE SET NULL;
 
 
 --
