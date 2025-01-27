@@ -105,7 +105,6 @@ class API {
       }
 
       const { data } = await response.json();
-      console.log('data :>> ', data);
       const accessToken = data.access_token;
       const newRefreshToken = data.refresh_token;
 
@@ -125,6 +124,7 @@ class API {
   public logout(): void {
     this.setToken(null);
     this.setRefreshToken(null);
+    window.location.href = '/login';
   }
 
   public decodeToken(): ReturnType<typeof decode> | null{
@@ -159,8 +159,8 @@ class API {
         throw new Error(`HTTP error ${response.status}`);
       }
 
-      const data = await response.json();
-      const newAccessToken = data.accessToken; // Adjust based on your API response
+      const { data } = await response.json();
+      const newAccessToken = data.access_token; // Adjust based on your API response
 
       if (newAccessToken) {
         this.setToken(newAccessToken);

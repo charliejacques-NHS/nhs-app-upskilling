@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import api from '../lib/api';
-import { useNavigate } from 'react-router';
-import { ROUTES } from '../types';
 
-const LoginForm = () => {
+export interface LoginFormProps {
+  callback?(): void;
+}
+
+
+const LoginForm: FC<LoginFormProps> = ({ callback = () => {} }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,7 +17,8 @@ const LoginForm = () => {
     try {
       await api.login(email, password);
       // Handle successful login, e.g., redirect to another page
-      navigate(ROUTES.HOME);
+      callback();
+      window.location.reload();
     } catch (err) {
       setError((err as Error).message);
     }
