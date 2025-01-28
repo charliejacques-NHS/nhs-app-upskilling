@@ -1,5 +1,5 @@
 import { decode, JwtPayload } from 'jsonwebtoken';
-import { Message, User } from '../types';
+import { Message, ServiceJourneyRule, User } from '../types';
 
 class API {
   private token: string | null = null;
@@ -211,6 +211,12 @@ class API {
 
   public async getUsersMe() {
     return this.request<User>(`/api/users/me`, {
+      method: 'GET',
+    });
+  }
+  
+  public async getServiceJourneyRules() {
+    return this.request<ServiceJourneyRule[]>(`/api/items/sjr`, {
       method: 'GET',
     });
   }

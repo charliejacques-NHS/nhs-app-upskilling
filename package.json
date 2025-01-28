@@ -19,6 +19,10 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "directus": "^11.4.0",
     "jsonwebtoken": "^9.0.2",

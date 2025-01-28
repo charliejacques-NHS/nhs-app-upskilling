@@ -1,3 +1,4 @@
 import Message from "./Message/Message";
+import LinkCollection from "./LinkCollection/LinkCollection";
 
-export { Message };
+export { Message, LinkCollection };
