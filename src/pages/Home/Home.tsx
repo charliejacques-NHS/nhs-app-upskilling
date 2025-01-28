@@ -4,10 +4,18 @@ import { useUserInfo } from "../../hooks"
 import { LinkCollection } from "../../components"
 import s from './Home.module.scss';
 import { useSjrContext } from "../../context";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import { installNativeAppFunctions } from "../../lib/nativeAppFunctions";
 
 const Home = () => {
   const { userInfo, loading } = useUserInfo();
   const { checkFeatureAvailable } = useSjrContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    installNativeAppFunctions(navigate);
+  }, [navigate]);
 
   const getGreeting = () => {
     const now = new Date().getHours();
@@ -40,13 +48,13 @@ const Home = () => {
       />
       {checkFeatureAvailable(SJR.HEALTH_RECORD) ? (
           <LinkCollection 
-          title={"Your health"}
-          url={ROUTES.SERVICES}
-          links={[
-            { label: "GP health record", url: ROUTES.MESSAGES },
-            { label: "View and manage prescriptions", url: ROUTES.MESSAGES },
-            { label: "Upcoming and past appointments", url: ROUTES.MESSAGES }
-          ]} 
+            title={"Your health"}
+            url={ROUTES.SERVICES}
+            links={[
+              { label: "GP health record", url: ROUTES.MESSAGES },
+              { label: "View and manage prescriptions", url: ROUTES.MESSAGES },
+              { label: "Upcoming and past appointments", url: ROUTES.MESSAGES }
+            ]} 
           />
       ) : <></>}
       <LinkCollection 

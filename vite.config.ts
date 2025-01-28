@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
         rewrite: (path) => path.replace(/^\/api/, '') // Remove the '/api' prefix from the request URL
       }
       // You can add more proxies for different prefixes if needed
-    }
+    },
+    host: "0.0.0.0"
   }
 }})
