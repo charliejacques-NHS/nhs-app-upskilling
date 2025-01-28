@@ -1,5 +1,5 @@
 import { decode, JwtPayload } from 'jsonwebtoken';
-import { Message } from '../types';
+import { Message, User } from '../types';
 
 class API {
   private token: string | null = null;
@@ -205,6 +205,12 @@ class API {
 
   public async getMessage(id: string): Promise<Message> {
     return this.request<Message>(`/api/items/messages/${id}`, {
+      method: 'GET',
+    });
+  }
+
+  public async getUsersMe() {
+    return this.request<User>(`/api/users/me`, {
       method: 'GET',
     });
   }
